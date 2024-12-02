@@ -28,6 +28,10 @@ Saludos,
 Sophia Petronila
 Tezla Motores
 
+### Dependencias ###
+
+Versión de Nodejs: 16.15 o superior
+
 ### Indicaciones del repositorio ###
 
 Instalación de dependencias
