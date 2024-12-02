@@ -30,6 +30,14 @@ Tezla Motores
 
 ### Indicaciones del repositorio ###
 
+Instalación de dependencias
+
+```
+
+npm install
+
+```
+
 En el archivo /tests/asistencia.test.js se encuentran las pruebas unitarias de los distintos métodos del archivo index.js. 
 
 4 de las pruebas contienen el caso de uso con ausencias de medio día, las cuales fallan en su validación.
