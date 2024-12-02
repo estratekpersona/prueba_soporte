@@ -1,6 +1,6 @@
 # Prueba Técnica para Posición de Soporte y Mantenimiento EPC #
 
-El código fuente en este repositorio contiene el método de cálculo de asistencia que utiliza el sistema de planilla para calcular el pago de los colaboradores.
+El código fuente en este [repositorio](https://github.com/estratekpersona/prueba_soporte) contiene el método de cálculo de asistencia que utiliza el sistema de planilla para calcular el pago de los colaboradores.
 
 ### Instrucciones de la prueba ###
 
