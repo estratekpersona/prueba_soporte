@@ -222,6 +222,7 @@ module.exports = {
         let limitDay = endDay < diasenelmes ? endDay : 30;
 
         let fechasNoLaboradosConTipodia = module.exports.transformarPeriodosAObjetoConTipodia(JSON.parse(JSON.stringify(_periodosNoLaborados)));
+        let prueba1 = module.exports.prueba1(_periodosNoLaborados);
         let diasNoLaboradosConTipodia = {};
         Object.keys(fechasNoLaboradosConTipodia).map((fecha)=>{
             if(moment(fecha).isSameOrAfter(startDate) && moment(fecha).isSameOrBefore(endDate)){
@@ -242,6 +243,9 @@ module.exports = {
                 }                
             }else{
                 // cuando el dia es no laborado .....
+                if (typeof prueba1[startDate.format( 'YYYY-MM-DD' )] !== 'undefined' && prueba1[startDate.format( 'YYYY-MM-DD' )] === 0.5) {
+                    days += 0.5;
+                }
             }
             startDay++;        
             startDate.add(1,'days');
@@ -279,12 +283,16 @@ module.exports = {
 
 
             let max = moment(endDate.format());
+            let prueba1 = module.exports.prueba1(_periodosNoLaborados);
             while( startDate.isBefore(max) ){
                 if(diasNoLaborados.indexOf(startDate.format('YYYY-MM-DD'))<0){
                     // Es labordor entonces sumar
                     days++;
                 }else{
                     // cuando el dia es no laborado .....
+                    if (typeof prueba1[startDate.format( 'YYYY-MM-DD' )] !== 'undefined' && prueba1[startDate.format( 'YYYY-MM-DD' )] === 0.5) {
+                        days += 0.5;
+                    }
                 }
                 startDate.add(1,'days');
                 startDay++;
@@ -335,6 +343,28 @@ module.exports = {
 
         }catch(e){
             console.log("transformarPeriodosAObjetoConTipodia",e);
+            return dias;
+        }
+    },
+    prueba1: (periodos)=>{
+        let dias = {};
+        try{            
+
+            periodos.forEach(element => {
+                element.fechainicio = element.fechainicio.split('T')[0];
+                element.fechafin = element.fechafin.split('T')[0];
+                let start = moment(element.fechainicio).utc();
+                let end = moment(element.fechafin).utc();
+                while(start.isBefore(moment(end.format()).add(1,'days'))){
+                    dias[start.format('YYYY-MM-DD')] = element.dias;
+                    //['2024-01-01': 0.5]
+                    start.add(1,'days')
+                }
+            });
+            return dias;
+
+        }catch(e){
+            console.log("prueba1",e);
             return dias;
         }
     },
